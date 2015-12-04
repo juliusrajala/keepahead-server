@@ -24,7 +24,7 @@ function startAPI(settings) {
       console.log('Received POST data: device' + deviceId);
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
-    console.log(JSON.stringfy(request.payload));
+    console.log(JSON.stringify(request.payload));
       reply("Something happened.");
     }
   });
