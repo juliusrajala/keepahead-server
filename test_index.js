@@ -3,7 +3,7 @@ var apiServer = new Hapi.Server();
 
 var settings = {
     httpPort: process.env.PORT,
-    apiPath: '/hot4guysapi/post',
+    apiPath: '/api/post',
     // httpHost: '0.0.0.0'
 }
 
