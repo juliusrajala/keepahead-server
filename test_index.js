@@ -10,7 +10,7 @@ var settings = {
 
 function startAPI(settings) {
   console.log("Seeing if this even gets called.");
-  console.log(settings.httpHost + " " + settings.httpPort)
+
   apiServer.connection({
     host: settings.httpHost,
     port: settings.httpPort
@@ -20,6 +20,7 @@ function startAPI(settings) {
     method: 'POST',
     path: settings.apiPath,
     handler: function(request, reply) {
+      var dId = request.headers.deviceauthuuid ? request.headers.deviceauthuuid : 'unknown';
       console.log('Received POST data: device' + dId);
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
