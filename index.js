@@ -20,4 +20,4 @@ app.get("/getlocation", function(req, res){
 
 console.log("Listening to port "+ PORT);
 
-app.listen(3000);
+app.listen(process.env.Port || 3000);
