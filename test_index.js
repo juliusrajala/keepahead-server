@@ -1,0 +1,34 @@
+var Hapi = require('hapi');
+var apiServer = new Hapi.Server();
+
+var settings = {
+    httpPort: process.env.PORT,
+    apiPath: '/hot4guysapi/post',
+    httpHost: '0.0.0.0'
+}
+
+
+function startAPI(settings) {
+  console.log("Seeing if this even gets called.");
+  console.log(settings.httpHost + " " + settings.httpPort)
+  apiServer.connection({
+    host: settings.httpHost,
+    port: settings.httpPort
+  });
+
+  apiServer.route({
+    method: 'POST',
+    path: settings.apiPath,
+    handler: function(request, reply) {
+      console.log('Received POST data: device' + dId);
+	  //Do something with the data from a Thingsee One
+	  // console.log( request.payload );
+      reply("Something happened.");
+    }
+  });
+  apiServer.start(function() {
+    console.log('APIServer running at:', apiServer.info.uri);
+  });
+}
+
+startAPI(settings);

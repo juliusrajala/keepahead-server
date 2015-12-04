@@ -18,7 +18,8 @@ app.post("/hot4guysapi/post", function(req, res){
 	console.log(req.body);
 	console.log("Now logging whole req");
 	console.log(req)
-	console.log("HTTP POST done.");
+	console.log("HTTP POST done. Logging payload.");
+	console.log(req.payload);
 });
 
 //HTTP GET callback for delivering data
