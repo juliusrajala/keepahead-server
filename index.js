@@ -26,4 +26,4 @@ app.get("/getlocation", function(req, res){
 	console.log("Someone tried to get stuff.");
 });
 
-app.listen(process.env.Port || 3000);
+app.listen(process.env.PORT || 5000);
