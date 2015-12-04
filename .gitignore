@@ -1,2 +1,4 @@
 /node_modules
 /JSON
+.DS_Store
+/*.env
