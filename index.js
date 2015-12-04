@@ -7,6 +7,12 @@ var app = express();
 var JSON_FILE_PATH = "Something";
 var PORT = 3000;
 
+app.get('/', function (req, res) {
+    var remoteAddress = req.headers['x-forwarded-for'] || 
+                      req.connection.remoteAddress;
+    res.json({ "ipAddress": remoteAddress });
+});
+
 //HTTP POST callback for receiving data
 app.post("/hot4guysapi/post", function(req, res){
 	console.log("Logging body next");
