@@ -7,7 +7,7 @@ var app = express();
 var JSON_FILE_PATH = "Something";
 
 //HTTP POST callback for receiving data
-app.post("/postlocation", function(req, res){
+app.post("/hot4guysapi/post", function(req, res){
 	console.log(req.body);
 	console.log("End");
 });
