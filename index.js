@@ -5,7 +5,6 @@ var path = require('path');
 var app = express();
 
 var JSON_FILE_PATH = "Something";
-var PORT = 3000;
 
 app.get('/', function (req, res) {
     var remoteAddress = req.headers['x-forwarded-for'] || 
@@ -26,7 +25,5 @@ app.post("/hot4guysapi/post", function(req, res){
 app.get("/getlocation", function(req, res){
 	console.log("Someone tried to get stuff.");
 });
-
-console.log("Listening to port "+ PORT);
 
 app.listen(process.env.Port || 3000);
