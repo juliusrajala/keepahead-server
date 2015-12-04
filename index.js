@@ -9,7 +9,10 @@ var PORT = 3000;
 
 //HTTP POST callback for receiving data
 app.post("/hot4guysapi/post", function(req, res){
+	console.log("Logging body next");
 	console.log(req.body);
+	console.log("Now logging whole req");
+	console.log(req)
 	console.log("HTTP POST done.");
 });
 
