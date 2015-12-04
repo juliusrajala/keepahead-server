@@ -20,10 +20,11 @@ function startAPI(settings) {
     method: 'POST',
     path: settings.apiPath,
     handler: function(request, reply) {
-      var dId = request.headers.deviceauthuuid ? request.headers.deviceauthuuid : 'unknown';
-      console.log('Received POST data: device' + dId);
+      var deviceId = request.headers.deviceauthuuid ? request.headers.deviceauthuuid : 'unknown';
+      console.log('Received POST data: device' + deviceId);
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
+    console.log(JSON.stringfy(requests.payload));
       reply("Something happened.");
     }
   });
