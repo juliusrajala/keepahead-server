@@ -4,7 +4,7 @@ var apiServer = new Hapi.Server();
 var settings = {
     httpPort: process.env.PORT,
     apiPath: '/hot4guysapi/post',
-    httpHost: '0.0.0.0'
+    // httpHost: '0.0.0.0'
 }
 
 
@@ -24,6 +24,14 @@ function startAPI(settings) {
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
       reply("Something happened.");
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/hello',
+      handler: function (request, reply) {
+        reply('Hello!');
     }
   });
   apiServer.start(function() {
