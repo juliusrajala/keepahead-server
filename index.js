@@ -6,11 +6,13 @@ var app = express();
 
 var JSON_FILE_PATH = "Something";
 
-//Post callback for receiving data
-app.post("/postlocation", function(){
-
+//HTTP POST callback for receiving data
+app.post("/postlocation", function(req, res){
+	console.log(req.body);
+	console.log("End");
 });
 
-app.get("/getlocation/", function(){
+//HTTP GET callback for delivering data
+app.get("/getlocation", function(req, res){
 
 });
