@@ -1,0 +1,23 @@
+{
+  "name": "portofolio-skeleton",
+  "version": "0.0.0",
+  "description": "A webpage skeleton project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juliusrajala/portofolio-skeleton.git"
+  },
+  "author": "Julius Rajala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliusrajala/portofolio-skeleton/issues"
+  },
+  "dependencies": {
+    "react-dom": "^0.14.3",
+    "react-google-maps": "file:react-google-maps"
+  }
+}
