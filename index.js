@@ -29,14 +29,23 @@ function startAPI(settings) {
     port: settings.httpPort
   });
 
+  function handleImpact(settings, device){
+    console.log("Handling impact.");
+  }
+
+  function handleNotify(settings, device){
+    console.log("Notification from phone.");
+  }
+
+  //HTTP requests for data handling and visualization.
   apiServer.route({
     method: 'POST',
     path: settings.apiPath,
     handler: function(request, reply) {
       var deviceId = request.headers.deviceauthuuid ? request.headers.deviceauthuuid : 'unknown';
       console.log('Received POST data: device' + deviceId);
-	  //Do something with the data from a Thingsee One
-	  // console.log( request.payload );
+    //Do something with the data from a Thingsee One
+    // console.log( request.payload );
       var dData = JSON.stringify(request.payload);
       var sensData = request.payload[0].senses;
       console.log(dData);
@@ -82,9 +91,48 @@ function startAPI(settings) {
     }
   });
 
+  apiServer.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory:{
+        
+      }
+    }
+  });
+
+  //HTTP requests for the android side.
+  apiServer.route({
+    method: 'POST',
+    path: '/android/notifyServer',
+    handler: function(request, reply){
+      handleNotify(1,5);
+      reply();
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/android/deliverLocation',
+    handler: function(request, reply){
+      reply();
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/android/deliverAllData',
+    handler: function(request, reply){
+      reply();
+    }
+  })
+
   apiServer.start(function() {
     console.log('APIServer running at:', apiServer.info.uri);
   });
 }
 
 startAPI(settings);
+
+//Tests
+
