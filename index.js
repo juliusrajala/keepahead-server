@@ -54,7 +54,7 @@ function startAPI(settings) {
           console.log("Battery level is: " + batteryLevel);
         }else if(sensID === ACC_IMP_ID){
           var impactLevel = sensData[key].val;
-          console.log("WE HAVE IMPACT: " + impactLevel ? impactLevel : "Something");
+          console.log("WE HAVE IMPACT: " + (impactLevel ? impactLevel : "Something"));
         }
       }
       // temperature = (request.payload[0].senses[0].val);
