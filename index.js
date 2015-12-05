@@ -40,7 +40,6 @@ function startAPI(settings) {
       var sensData = request.payload[0].senses;
       console.log(dData);
       console.log(sensData);
-      console.log("----------------Clearing data---------------");
       for(var key in sensData){
         console.log("sensor value: " + JSON.stringify(sensData[key]));
         var sensID = sensData[key].sId;
@@ -49,7 +48,7 @@ function startAPI(settings) {
           console.log("Temperature set to: " + temperature);
         }else if(sensID === (ACC_VE_ID || ACC_LA_ID || ACC_LO_ID)){
           console.log("Acceleration of: " +sensData[key].val);
-        }else if (sensID = BATT_ID){
+        }else if (sensID === BATT_ID){
           batteryLevel = sensData[key].val;
           console.log("Battery level is: "+ batteryLevel);
         }
