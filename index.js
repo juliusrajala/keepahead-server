@@ -40,7 +40,7 @@ function startAPI(settings) {
       console.log(sensData);
       console.log("----------------Clearing data---------------");
       for(var key in sensData){
-        console.log("sensor value: " + sensData[key]);
+        console.log("sensor value: " + JSON.stringify(sensData[key]));
         var sensID = sensData[key].sId;
         if(sensID == TEMP_ID){
           temperature = sensData[key].val;
