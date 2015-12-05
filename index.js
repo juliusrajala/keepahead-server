@@ -23,19 +23,19 @@ function startAPI(settings) {
   var TEMP_ID = "0x00060100";
   var BATT_ID = "0x00030200";
 
-  //Not in use:
+  //Not in use on thingsee side:
   var ACC_LO_ID = "0x00050100";
   var ACC_LA_ID = "0x00050200";
   var ACC_VE_ID = "0x00050300";
 
 
-  var temperature = [0.0,0];
-  var batteryLevel = [0.0,0];
-  var loc_latitude = [0.0,0];
-  var loc_longitude = [0.0,0];
-  var loc_accuracy = [0.0,0];
-  var cur_speed = [0.0,0];
-  var impact_data = [0.0,0];
+  var temperature = ["TEMP_ID",0.0,0];
+  var batteryLevel = ["BATT_ID",0.0,0];
+  var loc_latitude = ["LOC_LA_ID",0.0,0];
+  var loc_longitude = ["LOC_LO_ID",0.0,0];
+  var loc_accuracy = ["LOC_AC_ID",0.0,0];
+  var cur_speed = ["SPEED_ID",0.0,0];
+  var impact_data = ["ACC_IMP_ID",0.0,0];
 
 
   apiServer.connection({
@@ -85,30 +85,30 @@ function startAPI(settings) {
         console.log("sensor value: " + JSON.stringify(sensData[key]));
         var sensID = sensData[key].sId;
         if(sensID == TEMP_ID){
-          temperature = [sensData[key].val,sensData[key].ts];
-          console.log("Temperature set to: " + temperature[0]);
+          temperature = ["TEMP_ID",sensData[key].val,sensData[key].ts];
+          console.log("Temperature set to: " + temperature[1]);
         }else if(sensID === (ACC_VE_ID || ACC_LA_ID || ACC_LO_ID)){
           console.log("Acceleration of: " +sensData[key].val);
         }else if (sensID === BATT_ID){
-          batteryLevel = [sensData[key].val,sensData[key].ts];
-          console.log("Battery level is: " + batteryLevel[0]);
+          batteryLevel = ["BATT_ID",sensData[key].val,sensData[key].ts];
+          console.log("Battery level is: " + batteryLevel[1]);
         }else if(sensID === ACC_IMP_ID){
           var impactLevel = sensData[key].val;
-          impact_data = [impactLevel,sensData[key].ts];
+          impact_data = ["ACC_IMP_ID",impactLevel,sensData[key].ts];
           console.log("WE HAVE IMPACT: " + (impactLevel ? impactLevel : "Something") + " at " + Date(sensData[key].ts));
           //handleImpact(impact_data);
         }else if(sensID === LOC_LA_ID){
-          loc_latitude = [sensData[key].val,sensData[key].ts];
-          console.log("Latitude is: " + loc_latitude[0]);
+          loc_latitude = ["LOC_LA_ID",sensData[key].val,sensData[key].ts];
+          console.log("Latitude is: " + loc_latitude[1]);
         }else if(sensID === LOC_LO_ID){
-          loc_longitude = [sensData[key].val,sensData[key].ts];
-          console.log("Longitude is: " + loc_longitude[0]);
+          loc_longitude = ["LOC_LO_ID",sensData[key].val,sensData[key].ts];
+          console.log("Longitude is: " + loc_longitude[1]);
         }else if(sensID === LOC_AC_ID){
-          loc_accuracy = [sensData[key].val,sensData[key].ts];
-          console.log("Location accuracy: " + loc_accuracy[0]);
+          loc_accuracy = ["LOC_AC_ID",sensData[key].val,sensData[key].ts];
+          console.log("Location accuracy: " + loc_accuracy[1]);
         }else if(sensID === SPEED_ID){
-          cur_speed = [sensData[key].val,sensData[key].ts];
-          console.log("Current speed: " + cur_speed[0]);
+          cur_speed = ["SPEED_ID",sensData[key].val,sensData[key].ts];
+          console.log("Current speed: " + cur_speed[1]);
         }
       }
       // temperature = (request.payload[0].senses[0].val);
