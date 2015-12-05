@@ -1,4 +1,6 @@
 var Hapi = require('hapi');
+var fs = require('fs');
+var path = require('path');
 var apiServer = new Hapi.Server();
 
 var settings = {
@@ -7,9 +9,10 @@ var settings = {
     // httpHost: '0.0.0.0'
 }
 
-
 function startAPI(settings) {
   console.log("Seeing if this even gets called.");
+
+  var temperature = 0.0;
 
   apiServer.connection({
     host: settings.httpHost,
@@ -24,7 +27,9 @@ function startAPI(settings) {
       console.log('Received POST data: device' + deviceId);
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
-    console.log(JSON.stringify(request.payload));
+    var dData = JSON.stringify(request.payload);
+    
+    console.log(dData);
       reply("Something happened.");
     }
   });
@@ -36,6 +41,15 @@ function startAPI(settings) {
         reply('Hello!');
     }
   });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/temperature',
+    handler: function(request, reply) {
+      var response = 
+    }
+  });
+
   apiServer.start(function() {
     console.log('APIServer running at:', apiServer.info.uri);
   });
