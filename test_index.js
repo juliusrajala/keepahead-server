@@ -27,9 +27,10 @@ function startAPI(settings) {
       console.log('Received POST data: device' + deviceId);
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
-    var dData = JSON.stringify(request.payload);
-    
-    console.log(dData);
+      var dData = JSON.stringify(request.payload);
+      console.log(dData);
+      console.log("----------------Clearing data---------------");
+      console.log(dData[0].engine.senses[0].val);
       reply("Something happened.");
     }
   });
@@ -46,7 +47,9 @@ function startAPI(settings) {
     method: 'GET',
     path: '/temperature',
     handler: function(request, reply) {
-      var response = 
+      var response = temperature;
+
+      reply(response);
     }
   });
 
