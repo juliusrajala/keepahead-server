@@ -18,8 +18,10 @@ function startAPI(settings) {
   var ACC_LA_ID = "0x00050200";
   var ACC_VE_ID = "0x00050300";
   var TEMP_ID = "0x00060100";
+  var BATT_ID = "0x00030200";
 
   var temperature = 0.0;
+  var batteryLevel = 0.0;
 
   apiServer.connection({
     host: settings.httpHost,
@@ -47,6 +49,9 @@ function startAPI(settings) {
           console.log("Temperature set to: " + temperature);
         }else if(sensID === (ACC_VE_ID || ACC_LA_ID || ACC_LO_ID)){
           console.log("Acceleration of: " +sensData[key].val);
+        }else if (sensID = BATT_ID){
+          batteryLevel = sensData[key].val;
+          console.log("Battery level is: "+ batteryLevel);
         }
       }
       // temperature = (request.payload[0].senses[0].val);
