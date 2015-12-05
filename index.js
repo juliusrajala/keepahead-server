@@ -32,8 +32,8 @@ function startAPI(settings) {
       console.log(dData);
       console.log(sensData);
       console.log("----------------Clearing data---------------");
-      for(var value in sensData){
-        console.log(value);
+      for(var sensor in sensData){
+        console.log("sensor value: " + sensor);
         if(value.sId == "0x00060100"){
           temperature = value.val;
           console.log("Temperature set to: " + temperature);
