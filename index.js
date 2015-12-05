@@ -17,6 +17,7 @@ function startAPI(settings) {
   var ACC_LO_ID = "0x00050100";
   var ACC_LA_ID = "0x00050200";
   var ACC_VE_ID = "0x00050300";
+  var ACC_IMP_ID = "0x00050400";
   var TEMP_ID = "0x00060100";
   var BATT_ID = "0x00030200";
 
@@ -50,7 +51,10 @@ function startAPI(settings) {
           console.log("Acceleration of: " +sensData[key].val);
         }else if (sensID === BATT_ID){
           batteryLevel = sensData[key].val;
-          console.log("Battery level is: "+ batteryLevel);
+          console.log("Battery level is: " + batteryLevel);
+        }else if(sensID === ACC_IMP_ID){
+          var impactLevel = sensData[key].val;
+          console.log("WE HAVE IMPACT: " + impactLevel ? impactLevel : "Something");
         }
       }
       // temperature = (request.payload[0].senses[0].val);
