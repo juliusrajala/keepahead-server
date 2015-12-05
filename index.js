@@ -30,9 +30,9 @@ function startAPI(settings) {
       var dData = JSON.stringify(request.payload);
       var sensData = request.payload[0].senses;
       console.log(dData);
-      console.log(request.payload[0].senses);
+      console.log(sensData);
       console.log("----------------Clearing data---------------");
-      for(value in sensData){
+      for(var value in sensData){
         console.log(value);
         if(value.sId == "0x00060100"){
           temperature = value.val;
