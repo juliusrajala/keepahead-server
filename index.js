@@ -30,7 +30,7 @@ function startAPI(settings) {
       var dData = JSON.stringify(request.payload);
       var sensData = request.payload[0].senses;
       console.log(dData);JSON.stringify
-      console.log(request.payload)
+      console.log(request.payload[0].senses)
       console.log("----------------Clearing data---------------");
       for(value in sensData){
         if(value.sId === "0x00060100"){
