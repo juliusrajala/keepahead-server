@@ -31,7 +31,7 @@ function startAPI(settings) {
       console.log(dData);JSON.stringify
       console.log(request.payload)
       console.log("----------------Clearing data---------------");
-      console.log(dData[0].senses[0].val);
+      console.log(request.payload[0].senses[0].val);
       reply("Something happened.");
     }
   });
