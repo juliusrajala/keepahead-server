@@ -9,8 +9,15 @@ var settings = {
     // httpHost: '0.0.0.0'
 }
 
+
+
 function startAPI(settings) {
   console.log("Seeing if this even gets called.");
+
+  var ACC_LO_ID = "0x00050100";
+  var ACC_LA_ID = "0x00050200";
+  var ACC_VE_ID = "0x00050300";
+  var TEMP_ID = "0x00060100";
 
   var temperature = 0.0;
 
@@ -34,9 +41,12 @@ function startAPI(settings) {
       console.log("----------------Clearing data---------------");
       for(var key in sensData){
         console.log("sensor value: " + sensData[key]);
-        if(sensData[key].sId == "0x00060100"){
+        var sensID = sensData[key].sId;
+        if(sensID == TEMP_ID){
           temperature = sensData[key].val;
           console.log("Temperature set to: " + temperature);
+        }else if(sensID === (ACC_VE_ID || ACC_LA_ID || ACC_LO_ID)){
+          console.log("Acceleration of: " +sensData[key].val);
         }
       }
       // temperature = (request.payload[0].senses[0].val);
