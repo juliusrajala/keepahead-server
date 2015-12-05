@@ -31,7 +31,8 @@ function startAPI(settings) {
       console.log(dData);JSON.stringify
       console.log(request.payload)
       console.log("----------------Clearing data---------------");
-      console.log(request.payload[0].senses[0].val);
+      temperature = (request.payload[0].senses[0].val);
+      console.log("temperature: "+temperature);
       reply("Something happened.");
     }
   });
@@ -48,7 +49,7 @@ function startAPI(settings) {
     method: 'GET',
     path: '/temperature',
     handler: function(request, reply) {
-      var response = temperature;
+      var response = temperature+ "C";
 
       reply(response);
     }
