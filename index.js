@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
 var fs = require('fs');
 var path = require('path');
+// var Inert = require('inert');
 var apiServer = new Hapi.Server();
 
 var settings = {
@@ -30,7 +31,19 @@ function startAPI(settings) {
   });
 
   function handleImpact(settings, device){
+    //TODO: update JSON file.
     console.log("Handling impact.");
+  }
+
+  function writeJSON(name, data){
+    if(!fs.exists('www/JSON/'+name+'.json')){
+      console.log("Something.")
+      fs.writeFile('www/JSON/'+name+'.json', JSON.stringify(data), {flags: "w"}, function(err){
+        if(err){
+          return console.log(err);
+        }
+      });
+    }
   }
 
   function handleNotify(settings, device){
@@ -93,11 +106,9 @@ function startAPI(settings) {
 
   apiServer.route({
     method: 'GET',
-    path: '/{param*}',
-    handler: {
-      directory:{
-        
-      }
+    path: '/home',
+    handler: function(request, reply){
+      reply.file('www/index.html');
     }
   });
 
@@ -125,14 +136,18 @@ function startAPI(settings) {
     handler: function(request, reply){
       reply();
     }
-  })
+  });
+
 
   apiServer.start(function() {
     console.log('APIServer running at:', apiServer.info.uri);
+    //TESTS
+    //writeJSON("apina", [{"a":"b"}])
   });
+
+
 }
 
 startAPI(settings);
-
 //Tests
 
