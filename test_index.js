@@ -28,7 +28,8 @@ function startAPI(settings) {
 	  //Do something with the data from a Thingsee One
 	  // console.log( request.payload );
       var dData = JSON.stringify(request.payload);
-      console.log(dData);
+      console.log(dData);JSON.stringify
+      console.log(request.payload)
       console.log("----------------Clearing data---------------");
       console.log(dData[0].senses[0].val);
       reply("Something happened.");
