@@ -130,7 +130,7 @@ function startAPI(settings) {
     method: 'GET',
     path: '/temperature',
     handler: function(request, reply) {
-      var response = "Temperature: " + temperature + "C";
+      var response = "Temperature: " + temperature[1] + "C";
 
       reply(response);
     }
