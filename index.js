@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
 var fs = require('fs');
 var path = require('path');
+// var Inert = require('inert');
 var apiServer = new Hapi.Server();
 
 var settings = {
@@ -29,14 +30,35 @@ function startAPI(settings) {
     port: settings.httpPort
   });
 
+  function handleImpact(settings, device){
+    //TODO: update JSON file.
+    console.log("Handling impact.");
+  }
+
+  function writeJSON(name, data){
+    if(!fs.exists('www/JSON/'+name+'.json')){
+      console.log("Something.")
+      fs.writeFile('www/JSON/'+name+'.json', JSON.stringify(data), {flags: "w"}, function(err){
+        if(err){
+          return console.log(err);
+        }
+      });
+    }
+  }
+
+  function handleNotify(settings, device){
+    console.log("Notification from phone.");
+  }
+
+  //HTTP requests for data handling and visualization.
   apiServer.route({
     method: 'POST',
     path: settings.apiPath,
     handler: function(request, reply) {
       var deviceId = request.headers.deviceauthuuid ? request.headers.deviceauthuuid : 'unknown';
       console.log('Received POST data: device' + deviceId);
-	  //Do something with the data from a Thingsee One
-	  // console.log( request.payload );
+    //Do something with the data from a Thingsee One
+    // console.log( request.payload );
       var dData = JSON.stringify(request.payload);
       var sensData = request.payload[0].senses;
       console.log(dData);
@@ -82,9 +104,50 @@ function startAPI(settings) {
     }
   });
 
+  apiServer.route({
+    method: 'GET',
+    path: '/home',
+    handler: function(request, reply){
+      reply.file('www/index.html');
+    }
+  });
+
+  //HTTP requests for the android side.
+  apiServer.route({
+    method: 'POST',
+    path: '/android/notifyServer',
+    handler: function(request, reply){
+      handleNotify(1,5);
+      reply();
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/android/deliverLocation',
+    handler: function(request, reply){
+      reply();
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/android/deliverAllData',
+    handler: function(request, reply){
+      reply();
+    }
+  });
+
+
   apiServer.start(function() {
     console.log('APIServer running at:', apiServer.info.uri);
+    //TESTS
+    //writeJSON("apina", [{"a":"b"}])
   });
+
+
 }
 
 startAPI(settings);
+//Tests
+
