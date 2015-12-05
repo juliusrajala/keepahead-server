@@ -15,12 +15,19 @@ var settings = {
 function startAPI(settings) {
   console.log("Seeing if this even gets called.");
 
-  var ACC_LO_ID = "0x00050100";
-  var ACC_LA_ID = "0x00050200";
-  var ACC_VE_ID = "0x00050300";
+  var LOC_LA_ID = "0x00010100";
+  var LOC_LO_ID = "0x00010200";
+  var LOC_AC_ID = "0x00010400";
+  var SPEED_ID = "0x00020100";
   var ACC_IMP_ID = "0x00050400";
   var TEMP_ID = "0x00060100";
   var BATT_ID = "0x00030200";
+
+  //Not in use:
+  var ACC_LO_ID = "0x00050100";
+  var ACC_LA_ID = "0x00050200";
+  var ACC_VE_ID = "0x00050300";
+
 
   var temperature = 0.0;
   var batteryLevel = 0.0;
