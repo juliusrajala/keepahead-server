@@ -33,7 +33,7 @@ function startAPI(settings) {
   var batteryLevel = ["BATT_ID", 0.0, 0];
   var loc_latitude = ["LOC_LA_ID", 60.459031, 0];
   var loc_longitude = ["LOC_LO_ID", 22.267305, 0];
-  var loc_accuracy = ["LOC_AC_ID", 1.0, 0];
+  var loc_accuracy = ["LOC_AC_ID", .0, 0];
   var cur_speed = ["SPEED_ID", 0.0, 0];
   var impact_data = ["ACC_IMP_ID", 0.0, 0];
   var all_data;
@@ -64,7 +64,9 @@ function startAPI(settings) {
     console.log("Handling " + name);
   }
   function handleImpact(data, name){
-    output = {data, loc_latitude, loc_longitude, loc_accuracy};
+    
+    output = {data, loc_latitude, loc_longitude};
+    //TODO: update JSON file.
     writeJSON(name, output);
     console.log("Handling impact.");
   }
@@ -192,7 +194,7 @@ function startAPI(settings) {
     method: 'GET',
     path: '/android/deliverLocation',
     handler: function(request, reply){
-      reply("Location: Lat: " + loc_latitude[1] + " Long: " + loc_longitude[1] + " Accuracy: " + loc_accuracy[1] + "meters");
+      reply({Lat: loc_latitude[1], Long: loc_longitude[1]});
     }
   });
 
