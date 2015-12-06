@@ -109,7 +109,7 @@ function startAPI(settings) {
           var impactLevel = sensData[key].val;
           impact_data = ["ACC_IMP_ID", impactLevel, sensData[key].ts];
           console.log("WE HAVE IMPACT: " + (impactLevel ? impactLevel : "Something") + " at " + Date(sensData[key].ts));
-          //handleImpact(impact_data);
+          //handleImpact(impact_data, "Impact");
         }else if(sensID === LOC_LA_ID){
           loc_latitude = ["LOC_LA_ID", sensData[key].val, sensData[key].ts];
           console.log("Latitude is: " + loc_latitude[1]);
