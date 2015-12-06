@@ -30,11 +30,10 @@ function startAPI(settings) {
   var ACC_LA_ID = "0x00050200";
   var ACC_VE_ID = "0x00050300";
 
-
   var temperature = ["TEMP_ID", 0.0, 0];
   var batteryLevel = ["BATT_ID", 0.0, 0];
-  var loc_latitude = ["LOC_LA_ID", 60.459031, 0];
-  var loc_longitude = ["LOC_LO_ID", 22.267305, 0];
+  var loc_latitude = ["LOC_LA_ID", 60.449974, 0];
+  var loc_longitude = ["LOC_LO_ID", 22.293218, 0];
   var loc_accuracy = ["LOC_AC_ID", .0, 0];
   var cur_speed = ["SPEED_ID", 0.0, 0];
   var impact_data = ["ACC_IMP_ID", 0.0, 0];
