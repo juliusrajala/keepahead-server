@@ -1,3 +1,5 @@
+//var app = require("../manager.js").getApp(__dirname);  
+
 var Hapi = require('hapi');
 var fs = require('fs');
 var path = require('path');
