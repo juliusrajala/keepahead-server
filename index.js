@@ -31,9 +31,9 @@ function startAPI(settings) {
 
   var temperature = ["TEMP_ID", 0.0, 0];
   var batteryLevel = ["BATT_ID", 0.0, 0];
-  var loc_latitude = ["LOC_LA_ID", 0.0, 0];
-  var loc_longitude = ["LOC_LO_ID", 0.0, 0];
-  var loc_accuracy = ["LOC_AC_ID", 0.0, 0];
+  var loc_latitude = ["LOC_LA_ID", 60.459031, 0];
+  var loc_longitude = ["LOC_LO_ID", 22.267305, 0];
+  var loc_accuracy = ["LOC_AC_ID", 1.0, 0];
   var cur_speed = ["SPEED_ID", 0.0, 0];
   var impact_data = ["ACC_IMP_ID", 0.0, 0];
   var all_data;
@@ -64,8 +64,8 @@ function startAPI(settings) {
     console.log("Handling " + name);
   }
   function handleImpact(data, name){
-    //TODO: update JSON file.
-    writeJSON(name, data);
+    output = {data, loc_latitude, loc_longitude, loc_accuracy};
+    writeJSON(name, output);
     console.log("Handling impact.");
   }
 
