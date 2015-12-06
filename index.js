@@ -200,7 +200,7 @@ function startAPI(settings) {
     method: 'POST',
     path: '/android/notifyServer',
     handler: function(request, reply){
-      console.log(request)
+      console.log(request);
       reply();
     }
   });
