@@ -43,6 +43,22 @@ function startAPI(settings) {
     port: settings.httpPort
   });
 
+  function handleAllData(){
+    var all_data = 
+    {data:
+      [ 
+      {name: loc_latitude[0], value: loc_latitude[1], ts: loc_latitude[2]},
+      {name: loc_longitude[0], value: loc_longitude[1], ts: loc_longitude[2]},
+      {name: loc_accuracy[0], value: loc_accuracy[1], ts: loc_accuracy[2]},
+      {name: cur_speed[0], value: cur_speed[1], ts: cur_speed[2]},
+      {name: impact_data[0], value: impact_data[1], ts: impact_data[2]},
+      {name: temperature[0], value: temperature[1], ts: temperature[2]},
+      {name: batteryLevel[0], value: batteryLevel[1], ts: batteryLevel[2]}
+    ]
+    }
+    writeJSON(all_data, "All_data");
+  }
+
   function handleData(data, name){
     writeJSON(name,data);
     console.log("Handling " + name);
@@ -54,14 +70,11 @@ function startAPI(settings) {
   }
 
   function writeJSON(name, data){
-    if(!fs.exists('www/JSON/'+name+'.json')){
-      console.log("Something.")
       fs.writeFile('www/JSON/'+name+'.json', JSON.stringify(data), {flags: "w"}, function(err){
         if(err){
           return console.log(err);
         }
-      });
-    }
+    })  
   }
 
   function handleNotify(settings, device){
