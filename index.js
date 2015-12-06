@@ -52,6 +52,7 @@ function startAPI(settings) {
   var cur_speed = ["SPEED_ID", 0.0, 0];
   var impact_data = ["ACC_IMP_ID", 0.0, 0];
   var all_data;
+  var top_speed = 21;
 
 
   apiServer.connection({
@@ -137,8 +138,11 @@ function startAPI(settings) {
           loc_accuracy = ["LOC_AC_ID", sensData[key].val, sensData[key].ts];
           console.log("Location accuracy: " + loc_accuracy[1]);
         }else if(sensID === SPEED_ID){
-          cur_speed = ["SPEED_ID", sensData[key].val, sensData[key].ts];
-          console.log("Current speed: " + cur_speed[1]);
+          if(sensData[key].val>top_speed){
+            top_speed = sensData[key].val;
+          }
+          cur_speed = ["SPEED_ID", top_speed, sensData[key].ts];
+          console.log("Current speed: " + cur_speed[1] + " Top speed: " + top_speed);
         }
       }
       handleAllData();
