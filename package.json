@@ -6,13 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies":{
-  	"fs": "^0.0.2",
-  	"path":"^0.12.7",
-  	"hapi":"^11.1.2"
+  "dependencies": {
+    "fs": "^0.0.2",
+    "hapi": "^11.1.2",
+    "http": "0.0.0",
+    "node-gcm": "^0.13.0",
+    "path": "^0.12.7",
+    "querystring": "^0.2.0"
   },
-  "engines":{
-  	"node":"4.2.3"
+  "engines": {
+    "node": "4.2.3"
   },
   "author": "kakatinofthings",
   "license": "ISC"

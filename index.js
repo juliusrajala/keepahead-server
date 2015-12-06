@@ -12,6 +12,20 @@ var settings = {
     // httpHost: '0.0.0.0'
 }
 
+var gcm = require('node-gcm'),
+    gcm_message = new gcm.Message(),
+    senderGCM = new gcm.Sender('AIzaSyBxwyWeDN6Gj7opmdroPsMVfnaG888WK_A'),
+    RETRY_COUNT = 4;
+
+gcm_message.addData('key1', "Test sending.");
+gcm_message.delayWhileIdle = true;
+
+function sendGCMMessage(){
+  senderGCM.send(gcm_message, registrationIds, RETRY_COUNT, function(err, result) {
+      callback(err, result);
+  });
+}
+
 
 
 function startAPI(settings) {
@@ -186,7 +200,7 @@ function startAPI(settings) {
     method: 'POST',
     path: '/android/notifyServer',
     handler: function(request, reply){
-      handleNotify(1,5);
+      console.log(request)
       reply();
     }
   });
@@ -212,6 +226,7 @@ function startAPI(settings) {
     console.log('APIServer running at:', apiServer.info.uri);
     //TESTS
     //writeJSON("apina", [{"a":"b"}])
+    sendGCMMessage;
   });
 
 
