@@ -36,6 +36,7 @@ function startAPI(settings) {
   var loc_accuracy = ["LOC_AC_ID", 0.0, 0];
   var cur_speed = ["SPEED_ID", 0.0, 0];
   var impact_data = ["ACC_IMP_ID", 0.0, 0];
+  var all_data;
 
 
   apiServer.connection({
@@ -44,7 +45,7 @@ function startAPI(settings) {
   });
 
   function handleAllData(){
-    var all_data = 
+    all_data = 
     {data:
       [ 
       {name: loc_latitude[0], value: loc_latitude[1], ts: loc_latitude[2]},
@@ -56,7 +57,6 @@ function startAPI(settings) {
       {name: batteryLevel[0], value: batteryLevel[1], ts: batteryLevel[2]}
     ]
     }
-    writeJSON(all_data, "All_data");
   }
 
   function handleData(data, name){
@@ -124,6 +124,7 @@ function startAPI(settings) {
           console.log("Current speed: " + cur_speed[1]);
         }
       }
+      handleAllData();
       // temperature = (request.payload[0].senses[0].val);
 
       // console.log("temperature: " + temperature);
@@ -151,6 +152,26 @@ function startAPI(settings) {
 
   apiServer.route({
     method: 'GET',
+    path: '/speed',
+    handler: function(request, reply) {
+      var response = "Speed: " + cur_speed[1] + " m/s";
+
+      reply(response);
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
+    path: '/battery',
+    handler: function(request, reply) {
+      var response = "Battery lvl: " + batteryLevel[1] + "%";
+
+      reply(response);
+    }
+  });
+
+  apiServer.route({
+    method: 'GET',
     path: '/home',
     handler: function(request, reply){
       reply.file('www/index.html');
@@ -171,7 +192,7 @@ function startAPI(settings) {
     method: 'GET',
     path: '/android/deliverLocation',
     handler: function(request, reply){
-      reply();
+      reply("Location: Lat: " + loc_latitude[1] + " Long: " + loc_longitude[1] + " Accuracy: " + loc_accuracy[1] + "meters");
     }
   });
 
@@ -179,7 +200,7 @@ function startAPI(settings) {
     method: 'GET',
     path: '/android/deliverAllData',
     handler: function(request, reply){
-      reply();
+      reply(all_data);
     }
   });
 
